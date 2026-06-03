@@ -1,13 +1,639 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Adventure of Sarah, Sepehr & Kye</title>
-<meta http-equiv="refresh" content="0; url=Adventure.html">
-<link rel="canonical" href="Adventure.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --gold: #c8862a;
+  --gold-light: #e8a84a;
+  --bg: #faf7f2;
+  --bg-card: #ffffff;
+  --bg-section: #f5f0e8;
+  --text: #1a1510;
+  --text-mid: #5a4e42;
+  --text-light: #8a7e72;
+  --border: #e0d8cc;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.07);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.09);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+  --coastal: #2a7ea8;
+  --coastal-bg: #e8f4fa;
+  --forest: #2d6644;
+  --forest-bg: #e6f2ea;
+  --city: #4a5a8a;
+  --city-bg: #eaecf8;
+  --desert: #c07030;
+  --desert-bg: #faeee0;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --nav-h: 56px;
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-script: 'Caveat', cursive;
+}
+[data-theme="dark"] {
+  --bg: #16120e;
+  --bg-card: #211c17;
+  --bg-section: #1c1814;
+  --text: #ede8df;
+  --text-mid: #b0a898;
+  --text-light: #7a7268;
+  --border: #332e28;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.25);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.3);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--f-sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+a { color: var(--gold); text-decoration: none; }
+ul { list-style: none; }
+
+/* ── Nav ────────────────────────────────────────────────────── */
+#nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg-card); border-bottom: 1px solid var(--border);
+  height: var(--nav-h); box-shadow: var(--shadow-sm);
+  transition: background .3s;
+}
+.nav-inner {
+  max-width: 900px; margin: 0 auto; height: 100%;
+  display: flex; align-items: center; gap: 0; padding: 0 16px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 8px; font-weight: 600;
+  font-size: .9rem; color: var(--text); white-space: nowrap; margin-right: auto;
+  text-decoration: none;
+}
+.nav-paw { font-size: 1.1rem; }
+.nav-links {
+  display: flex; align-items: center; gap: 2px;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  display: block; padding: 8px 10px; font-size: .8rem; font-weight: 500;
+  color: var(--text-mid); white-space: nowrap; border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); background: var(--bg-section); }
+#dark-toggle {
+  padding: 8px; border-radius: 8px; font-size: 1rem; line-height: 1;
+  color: var(--text-mid); transition: background .2s; margin-left: 8px; flex-shrink: 0;
+}
+#dark-toggle:hover { background: var(--bg-section); }
+#hamburger { display: none; }
+
+/* ── Hero ───────────────────────────────────────────────────── */
+#overview {
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 18px, rgba(255,255,255,.025) 18px, rgba(255,255,255,.025) 20px),
+    linear-gradient(165deg, #0d2f48 0%, #0c3840 45%, #122b20 100%);
+  color: #fff; padding: 56px 20px 48px;
+  position: relative; overflow: hidden;
+}
+.hero-inner {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto; gap: 32px 48px; align-items: start;
+}
+.hero-eyebrow {
+  font-family: var(--f-script); font-size: 1.4rem; font-weight: 500;
+  color: rgba(255,255,255,.7); margin-bottom: 8px;
+}
+.hero-title {
+  font-family: var(--f-serif); font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700; line-height: 1.15; color: #fff; margin-bottom: 12px;
+  text-wrap: pretty;
+}
+.hero-dates {
+  font-size: .9rem; color: rgba(255,255,255,.65); font-weight: 400;
+  letter-spacing: .03em; margin-bottom: 28px;
+}
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.stat-pill {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 100px; padding: 6px 14px; display: flex; align-items: baseline; gap: 5px;
+}
+.stat-value { font-size: .95rem; font-weight: 600; color: #fff; }
+.stat-label { font-size: .75rem; color: rgba(255,255,255,.65); }
+
+/* Warnings */
+.warnings-toggle {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  background: rgba(200,100,30,.2); border: 1px solid rgba(200,100,30,.4);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  color: #ffd09a; font-size: .875rem; font-weight: 500;
+  transition: background .2s;
+}
+.warnings-toggle:hover { background: rgba(200,100,30,.3); }
+.warnings-count {
+  background: rgba(200,100,30,.4); border-radius: 100px;
+  padding: 2px 8px; font-size: .75rem; font-weight: 600;
+}
+.warnings-chevron { margin-left: auto; transition: transform .25s; }
+.warnings-body {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+.warnings-body > div { overflow: hidden; min-height: 0; }
+.warnings-open .warnings-chevron { transform: rotate(180deg); }
+.warnings-open .warnings-body { grid-template-rows: 1fr; }
+.warnings-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  padding: 12px 0 4px;
+}
+.warning-item {
+  background: rgba(255,255,255,.07); border-radius: var(--radius-sm);
+  padding: 10px 12px; display: flex; gap: 10px; align-items: flex-start;
+}
+.warning-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.warning-title { font-size: .8rem; font-weight: 600; color: #ffd09a; margin-bottom: 2px; }
+.warning-desc { font-size: .75rem; color: rgba(255,255,255,.6); line-height: 1.4; }
+.sev-high .warning-title { color: #ff9f7a; }
+.sev-medium .warning-title { color: #ffd09a; }
+.sev-low .warning-title { color: rgba(255,255,255,.7); }
+
+/* Route map */
+.route-map-wrap { grid-row: 1 / 3; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.route-map-label { font-size: .7rem; color: rgba(255,255,255,.45); letter-spacing: .06em; text-transform: uppercase; }
+.route-map svg { filter: drop-shadow(0 2px 8px rgba(0,0,0,.3)); }
+
+/* ── Section layout ─────────────────────────────────────────── */
+.section { padding: 48px 20px; }
+.section:nth-child(even) { background: var(--bg-section); }
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-header { margin-bottom: 28px; }
+.section-title {
+  font-family: var(--f-serif); font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 6px;
+}
+.section-meta { font-size: .875rem; color: var(--text-light); }
+.section-divider { height: 2px; width: 40px; background: var(--gold); margin: 12px 0; border-radius: 2px; }
+
+/* ── Day Cards ──────────────────────────────────────────────── */
+.days-list { display: flex; flex-direction: column; gap: 8px; }
+.day-card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow .2s; border: 1px solid var(--border); }
+.day-card:hover { box-shadow: var(--shadow-md); }
+.zone-coastal { border-left: 4px solid var(--coastal); }
+.zone-forest  { border-left: 4px solid var(--forest); }
+.zone-city    { border-left: 4px solid var(--city); }
+.zone-desert  { border-left: 4px solid var(--desert); }
+
+.day-header {
+  width: 100%; background: var(--bg-card); padding: 14px 16px;
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 12px;
+  align-items: center; transition: background .2s; text-align: left;
+  min-height: 44px;
+}
+.day-header:hover { background: var(--bg-section); }
+.day-header-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.day-label { font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-light); }
+.day-date { font-size: .8rem; font-weight: 600; color: var(--text); }
+.drive-badge {
+  font-size: .7rem; font-weight: 600; padding: 2px 8px; border-radius: 100px;
+  background: var(--bg-section); color: var(--text-mid); border: 1px solid var(--border);
+}
+.drive-badge.long { background: #fff3e0; color: #c07030; border-color: #f0c080; }
+[data-theme="dark"] .drive-badge.long { background: rgba(200,112,48,.15); color: #e8a060; border-color: rgba(200,112,48,.3); }
+.drive-badge.rest { background: var(--bg-section); color: var(--text-light); }
+.day-header-bottom { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; grid-column: 1; }
+.day-route { font-size: .875rem; font-weight: 500; color: var(--text); }
+.lodging-badge { font-size: .75rem; color: var(--text-light); white-space: nowrap; }
+.day-chevron { color: var(--text-light); font-size: .8rem; transition: transform .25s; grid-row: 1 / 3; grid-column: 2; align-self: center; }
+.day-card.expanded .day-chevron { transform: rotate(180deg); }
+
+/* Accordion body */
+.day-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s cubic-bezier(.4,0,.2,1); }
+.day-body-inner { overflow: hidden; min-height: 0; background: var(--bg-card); }
+.day-card.expanded .day-body { grid-template-rows: 1fr; }
+.day-content { padding: 0 20px 20px; border-top: 1px solid var(--border); }
+.day-desc { font-size: .9rem; color: var(--text-mid); line-height: 1.65; padding: 14px 0 4px; font-style: italic; }
+.day-sections { display: grid; gap: 14px; padding-top: 14px; }
+.day-sec h4 {
+  font-size: .7rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.day-sec ul { display: flex; flex-direction: column; gap: 4px; }
+.day-sec li { font-size: .875rem; color: var(--text); padding-left: 14px; position: relative; line-height: 1.5; }
+.day-sec li::before { content: "–"; position: absolute; left: 0; color: var(--text-light); }
+.food-item strong { color: var(--text); font-weight: 600; }
+.food-item .food-note { color: var(--text-mid); }
+.dog-sec li { color: var(--text-mid); }
+.warn-sec { background: rgba(200,100,30,.06); border-radius: var(--radius-sm); padding: 10px 14px; border-left: 3px solid var(--desert); }
+[data-theme="dark"] .warn-sec { background: rgba(200,100,30,.1); }
+.warn-sec li { color: var(--text-mid); }
+.lodging-detail { margin-bottom: 6px; }
+.lodging-name-main { font-weight: 600; font-size: .9rem; }
+.lodging-cost { font-size: .8rem; color: var(--gold); font-weight: 600; margin-left: 8px; }
+.lodging-notes-text { font-size: .8rem; color: var(--text-mid); line-height: 1.4; }
+.lodging-backup { font-size: .78rem; color: var(--text-light); margin-top: 4px; }
+.route-text { font-family: monospace; font-size: .8rem; color: var(--text-mid); background: var(--bg-section); padding: 6px 10px; border-radius: 6px; display: inline-block; margin-bottom: 4px; }
+
+/* ── Driving Table ──────────────────────────────────────────── */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.data-table { width: 100%; border-collapse: collapse; background: var(--bg-card); font-size: .85rem; }
+.data-table th { background: var(--bg-section); padding: 11px 14px; text-align: left; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; border-bottom: 2px solid var(--border); }
+.data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg-section); }
+.long-day td { background: rgba(200,112,48,.04); }
+.long-day td:first-child { border-left: 3px solid var(--desert); padding-left: 11px; }
+.flag-note { font-size: .75rem; color: var(--desert); font-weight: 500; display: block; margin-top: 2px; }
+.time-badge { font-weight: 600; white-space: nowrap; }
+.rest-badge { color: var(--text-light); font-style: italic; }
+
+/* ── Budget ─────────────────────────────────────────────────── */
+.budget-total { font-family: var(--f-serif); font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 24px; }
+.budget-total span { color: var(--gold); }
+.budget-bars { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.budget-bar-row { display: grid; grid-template-columns: 100px 1fr 70px; align-items: center; gap: 12px; }
+.budget-bar-label { font-size: .8rem; font-weight: 600; color: var(--text-mid); }
+.budget-bar-track { height: 10px; background: var(--bg-section); border-radius: 100px; overflow: hidden; border: 1px solid var(--border); }
+.budget-bar-fill { height: 100%; border-radius: 100px; transition: width .8s cubic-bezier(.4,0,.2,1); width: 0; }
+.budget-bar-amt { font-size: .8rem; font-weight: 600; color: var(--text-mid); text-align: right; }
+.budget-table tbody tr:hover td { background: var(--bg-section); }
+.budget-cat-row td { font-weight: 600; font-size: .8rem; letter-spacing: .04em; padding-top: 14px; color: var(--text); background: var(--bg-section); }
+.budget-item-row td { font-size: .82rem; color: var(--text-mid); padding-left: 22px; }
+.budget-total-row td { font-weight: 700; font-size: .9rem; background: var(--bg-section); border-top: 2px solid var(--border); }
+.amt-col { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ── Booking ────────────────────────────────────────────────── */
+.urg { font-size: .7rem; font-weight: 700; padding: 3px 8px; border-radius: 100px; white-space: nowrap; }
+.urg-critical { background: #fee2e2; color: #b91c1c; }
+.urg-very-high { background: #ffedd5; color: #c2410c; }
+.urg-high { background: #fef9c3; color: #92400e; }
+.urg-moderate { background: #d1fae5; color: #065f46; }
+[data-theme="dark"] .urg-critical { background: rgba(185,28,28,.2); color: #fca5a5; }
+[data-theme="dark"] .urg-very-high { background: rgba(194,65,12,.2); color: #fdba74; }
+[data-theme="dark"] .urg-high { background: rgba(146,64,14,.2); color: #fde68a; }
+[data-theme="dark"] .urg-moderate { background: rgba(6,95,70,.2); color: #6ee7b7; }
+.booking-what { max-width: 240px; }
+.booking-title { font-size: .85rem; font-weight: 500; }
+.booking-note { font-size: .75rem; color: var(--text-light); display: block; margin-top: 2px; }
+.booking-how { font-size: .8rem; color: var(--text-mid); white-space: nowrap; }
+.status-sel {
+  font-size: .78rem; padding: 4px 8px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--bg-card); color: var(--text);
+  cursor: pointer; font-family: var(--f-sans); min-width: 100px;
+}
+.status-sel:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.status-booked { color: #065f46; font-weight: 600; }
+[data-theme="dark"] .status-booked { color: #6ee7b7; }
+
+/* ── Dog Rules ──────────────────────────────────────────────── */
+.dog-rules-grid { display: grid; gap: 12px; }
+.dog-rule-card { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow-sm); }
+.dog-rule-loc { font-weight: 700; font-size: .9rem; color: var(--text); padding: 12px 16px; background: var(--bg-section); border-bottom: 1px solid var(--border); }
+.dog-rule-cols { display: grid; grid-template-columns: 1fr 1fr; }
+.dog-rule-col { padding: 12px 16px; }
+.dog-rule-col:first-child { border-right: 1px solid var(--border); }
+.dog-rule-col h4 { font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
+.col-yes h4 { color: #16a34a; }
+.col-no h4 { color: #dc2626; }
+[data-theme="dark"] .col-yes h4 { color: #4ade80; }
+[data-theme="dark"] .col-no h4 { color: #f87171; }
+.dog-rule-col li { font-size: .8rem; color: var(--text-mid); padding: 2px 0; }
+.dog-rule-note { font-size: .78rem; color: var(--text-light); padding: 8px 16px 10px; border-top: 1px solid var(--border); font-style: italic; }
+
+/* ── Food ───────────────────────────────────────────────────── */
+.food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.food-card { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); padding: 14px 16px; box-shadow: var(--shadow-sm); display: flex; gap: 12px; }
+.food-icon { font-size: 1.5rem; flex-shrink: 0; }
+.food-name { font-weight: 600; font-size: .9rem; color: var(--text); margin-bottom: 3px; }
+.food-loc { font-size: .75rem; color: var(--text-light); margin-bottom: 6px; }
+.food-desc { font-size: .8rem; color: var(--text-mid); line-height: 1.45; }
+.dog-friendly-pill { font-size: .68rem; font-weight: 600; background: #d1fae5; color: #065f46; border-radius: 100px; padding: 2px 7px; margin-left: 8px; white-space: nowrap; vertical-align: middle; }
+[data-theme="dark"] .dog-friendly-pill { background: rgba(6,95,70,.25); color: #6ee7b7; }
+
+/* ── Checklists ─────────────────────────────────────────────── */
+.checklist-categories { display: grid; gap: 20px; }
+.checklist-cat-title { font-family: var(--f-serif); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.checklist { display: flex; flex-direction: column; gap: 4px; }
+.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--bg-card); border: 1px solid var(--border); cursor: pointer; transition: background .15s; }
+.check-item:hover { background: var(--bg-section); }
+.check-item input[type="checkbox"] { margin-top: 2px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--gold); cursor: pointer; }
+.check-item span { font-size: .875rem; color: var(--text); line-height: 1.4; transition: color .2s; }
+.check-item.checked span { color: var(--text-light); text-decoration: line-through; }
+.check-item.checked { background: var(--bg-section); }
+.checklist-progress { font-size: .8rem; color: var(--text-light); margin-bottom: 8px; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 100px; margin-bottom: 14px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); border-radius: 100px; transition: width .4s ease; }
+
+/* ── Summary banner ────────────────────────────────────────── */
+.summary-banner {
+  background: linear-gradient(135deg, rgba(10,40,65,.9), rgba(20,50,32,.9));
+  color: rgba(255,255,255,.9); padding: 32px; border-radius: var(--radius);
+  text-align: center; font-family: var(--f-script); font-size: 1.6rem;
+  font-weight: 500; line-height: 1.5; box-shadow: var(--shadow-md);
+}
+[data-theme="dark"] .summary-banner { background: linear-gradient(135deg, rgba(10,40,65,.5), rgba(20,50,32,.5)); border: 1px solid var(--border); }
+
+/* ── Driving summary strip ──────────────────────────────────── */
+.drive-summary { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+.drive-stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 16px; text-align: center; min-width: 100px; }
+.drive-stat-value { font-size: 1.1rem; font-weight: 700; color: var(--gold); display: block; }
+.drive-stat-label { font-size: .75rem; color: var(--text-light); }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .route-map-wrap { display: none; }
+  .nav-links { display: none; }
+  #hamburger { display: flex; flex-direction: column; gap: 5px; padding: 10px; margin-left: 8px; border-radius: 8px; }
+  #hamburger span { display: block; width: 20px; height: 2px; background: var(--text-mid); border-radius: 2px; transition: transform .2s, opacity .2s; }
+  #nav[data-open] .nav-links { display: flex; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 8px; gap: 2px; box-shadow: var(--shadow-md); }
+  #nav[data-open] .nav-links a { padding: 12px 16px; font-size: .9rem; border-radius: 8px; }
+  .warnings-grid { grid-template-columns: 1fr; }
+  .dog-rule-cols { grid-template-columns: 1fr; }
+  .dog-rule-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .food-grid { grid-template-columns: 1fr; }
+  .budget-bar-row { grid-template-columns: 80px 1fr 60px; }
+}
+@media (min-width: 701px) {
+  .day-sections { grid-template-columns: repeat(2, 1fr); }
+  .day-sec.full-width { grid-column: 1 / -1; }
+  .dog-rules-grid { grid-template-columns: repeat(2, 1fr); }
+  .checklist-categories { grid-template-columns: repeat(2, 1fr); align-items: start; }
+}
+
+/* ── Nights at a Glance ─────────────────────────────────────── */
+.glance-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.glance-title {
+  font-family: var(--f-serif); font-size: 1.05rem; font-weight: 700; color: var(--text);
+}
+.glance-meta { font-size: .78rem; color: var(--text-light); }
+.glance-body {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); margin-bottom: 32px;
+}
+.glance-row {
+  display: grid;
+  grid-template-columns: 88px 140px 1fr auto;
+  gap: 0 14px; padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: center; transition: background .15s;
+  border-left: 3px solid transparent;
+}
+.glance-row:last-child { border-bottom: none; }
+.glance-row:hover { background: var(--bg-section); }
+.glance-row[data-zone="coastal"] { border-left-color: var(--coastal); }
+.glance-row[data-zone="forest"]  { border-left-color: var(--forest); }
+.glance-row[data-zone="city"]    { border-left-color: var(--city); }
+.glance-row[data-zone="desert"]  { border-left-color: var(--desert); }
+.glance-n {
+  font-size: .68rem; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--text-light); white-space: nowrap;
+}
+.glance-date { font-size: .78rem; color: var(--text-mid); white-space: nowrap; }
+.glance-dest { font-size: .85rem; font-weight: 600; color: var(--text); }
+.glance-lodge {
+  font-size: .78rem; color: var(--text-mid); white-space: nowrap;
+  display: flex; align-items: center; gap: 5px;
+}
+.glance-count {
+  background: var(--bg-section); border: 1px solid var(--border);
+  border-radius: 100px; padding: 1px 7px;
+  font-size: .68rem; font-weight: 700; color: var(--text-light);
+}
+@media (max-width: 700px) {
+  .glance-row {
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto;
+    gap: 2px 10px; padding: 9px 12px;
+  }
+  .glance-date { grid-column: 2; font-size: .75rem; }
+  .glance-dest { grid-column: 1 / -1; font-size: .85rem; }
+  .glance-lodge { grid-column: 1 / -1; font-size: .78rem; }
+}
+
+/* ── Packing: 2-column card layout ───────────────────────────── */
+#packing-content .checklist-categories {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+#packing-content .checklist-categories > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 16px 12px;
+  box-shadow: var(--shadow-sm);
+}
+#packing-content .checklist-cat-title {
+  font-size: 1rem;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+@media (min-width: 701px) {
+  #packing-content .checklist-categories {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
+}
+
+/* ── To-Do: single-column stacked categories ─────────────────── */
+#todo-content .checklist-categories {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+#todo-content .checklist-categories > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 16px 12px;
+  box-shadow: var(--shadow-sm);
+}
+#todo-content .checklist-cat-title {
+  font-size: 1rem;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+</style>
 </head>
 <body>
-<p><a href="Adventure.html">Open The Adventure of Sarah, Sepehr &amp; Kye</a></p>
+
+<!-- ── Nav ────────────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#overview" class="nav-brand"><span class="nav-paw">🐾</span><span>Sarah, Sepehr &amp; Kye</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#days">Days</a></li>
+      <li><a href="#driving">Driving</a></li>
+      <li><a href="#budget">Budget</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#dog-rules">Dog Rules</a></li>
+      <li><a href="#food">Food</a></li>
+      <li><a href="#packing">Packing</a></li>
+      <li><a href="#todo">To-Do</a></li>
+    </ul>
+    <button id="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+    <button id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Hero / Overview ────────────────────────────────────── -->
+<section id="overview">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">The Adventure of</div>
+      <h1 class="hero-title">Sarah, Sepehr &amp; Kye</h1>
+      <p class="hero-dates">West Coast Loop: Escondido to Seattle and Back &nbsp;·&nbsp; June 18 evening – July 5, 2026 &nbsp;·&nbsp; 17 Nights</p>
+      <div class="hero-stats" id="hero-stats"><!-- JS --></div>
+      <div id="warnings-container"><!-- JS --></div>
+    </div>
+    <div class="route-map-wrap">
+      <span class="route-map-label">The Route</span>
+      <svg width="150" height="280" viewBox="0 0 150 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Return route: inland, solid line -->
+        <path d="M 75 268 C 95 255 115 240 118 220 C 122 198 122 178 120 158 C 118 138 116 118 116 98 C 116 76 112 56 95 40 C 85 30 65 24 50 24" stroke="rgba(200,134,42,0.7)" stroke-width="2" stroke-linecap="round"/>
+        <!-- Coast route: dashed -->
+        <path d="M 75 268 C 55 255 42 238 40 218 C 38 198 38 178 36 158 C 34 138 30 118 28 98 C 26 78 26 58 36 42 C 42 34 47 28 50 24" stroke="rgba(200,134,42,0.45)" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+        <!-- Waypoint dots -->
+        <circle cx="50" cy="24" r="5" fill="#c8862a"/>
+        <circle cx="38" cy="155" r="3.5" fill="rgba(42,126,168,0.8)"/>
+        <circle cx="30" cy="95" r="3" fill="rgba(42,126,168,0.6)"/>
+        <circle cx="75" cy="268" r="6" fill="#c8862a"/>
+        <circle cx="117" cy="92" r="3.5" fill="rgba(45,102,68,0.8)"/>
+        <circle cx="120" cy="200" r="3.5" fill="rgba(192,112,48,0.8)"/>
+        <!-- Labels -->
+        <text x="56" y="20" font-family="DM Sans, sans-serif" font-size="8.5" fill="rgba(255,255,255,0.85)" font-weight="600">SEATTLE</text>
+        <text x="44" y="163" font-family="DM Sans, sans-serif" font-size="7" fill="rgba(255,255,255,0.55)">SF Bay</text>
+        <text x="12" y="100" font-family="DM Sans, sans-serif" font-size="7" fill="rgba(255,255,255,0.55)">Redwoods</text>
+        <text x="120" y="89" font-family="DM Sans, sans-serif" font-size="7" fill="rgba(255,255,255,0.55)">Bend</text>
+        <text x="119" y="207" font-family="DM Sans, sans-serif" font-size="7" fill="rgba(255,255,255,0.55)">E. Sierra</text>
+        <text x="58" y="281" font-family="DM Sans, sans-serif" font-size="8" fill="rgba(255,255,255,0.7)" font-weight="600">ESCONDIDO</text>
+        <!-- Legend -->
+        <line x1="18" y1="255" x2="32" y2="255" stroke="rgba(200,134,42,0.7)" stroke-width="2"/>
+        <text x="34" y="258" font-family="DM Sans, sans-serif" font-size="7" fill="rgba(255,255,255,0.45)">inland return</text>
+        <line x1="18" y1="265" x2="32" y2="265" stroke="rgba(200,134,42,0.45)" stroke-width="2" stroke-dasharray="4 3"/>
+        <text x="34" y="268" font-family="DM Sans, sans-serif" font-size="7" fill="rgba(255,255,255,0.45)">coast up</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── Day by Day ─────────────────────────────────────────── -->
+<section class="section" id="days">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Day by Day</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">18 entries &nbsp;·&nbsp; Night 0 through Day 17 &nbsp;·&nbsp; Tap any day to expand</p>
+    </div>
+    <div id="nights-glance"></div>
+    <div class="days-list" id="days-list"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ── Driving ────────────────────────────────────────────── -->
+<section class="section" id="driving">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Driving Overview</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">Total: ~3,600 miles across 15 driving days &nbsp;·&nbsp; <span style="color:var(--desert);font-weight:600;">Orange rows</span> = long driving days (&gt;4.5h)</p>
+    </div>
+    <div class="drive-summary" id="drive-summary"><!-- JS --></div>
+    <div class="table-scroll">
+      <table class="data-table" id="driving-table"><!-- JS --></table>
+    </div>
+  </div>
+</section>
+
+<!-- ── Budget ─────────────────────────────────────────────── -->
+<section class="section" id="budget">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Budget</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="budget-content"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ── Booking Priority ───────────────────────────────────── -->
+<section class="section" id="booking">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Booking Priority</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">Status saves automatically. <span style="color:var(--desert);font-weight:600;">CRITICAL items first.</span></p>
+    </div>
+    <div id="booking-content"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ── Dog Rules ──────────────────────────────────────────── -->
+<section class="section" id="dog-rules">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Dog Rules</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">Quick reference for Kye at every location. Check before every trail.</p>
+    </div>
+    <div class="dog-rules-grid" id="dog-rules-content"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ── Food Stops ─────────────────────────────────────────── -->
+<section class="section" id="food">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Food Stops</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">Recommendations from friends, not a Yelp listing.</p>
+    </div>
+    <div id="food-content"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ── Packing ────────────────────────────────────────────── -->
+<section class="section" id="packing">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Packing Checklist</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">Check items off as you pack. Progress saves to this device.</p>
+    </div>
+    <div id="packing-content"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ── To-Do ──────────────────────────────────────────────── -->
+<section class="section" id="todo">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">Pre-Trip To-Do</h2>
+      <div class="section-divider"></div>
+      <p class="section-meta">The launch sequence. Work through these before June 18.</p>
+    </div>
+    <div id="todo-content"><!-- JS --></div>
+    <div class="summary-banner" style="margin-top:40px;">
+      Jun 18 → wheels roll. Until then: book everything, train Kye's booties, and get excited. This trip is going to be extraordinary. 🐾
+    </div>
+  </div>
+</section>
+
+<script>
+window.TRIP_SYNC_CONFIG = window.TRIP_SYNC_CONFIG || { provider: 'local' };
+</script>
+<script src="trip-config.js?v=20260603-bookings-2"></script>
+<script src="trip-data.js?v=20260603-bookings-2"></script>
+<script src="trip-app.js?v=20260603-bookings-2"></script>
 </body>
 </html>
