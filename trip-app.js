@@ -468,7 +468,7 @@ function renderBookings() {
   const saved = STORAGE.get('kye-bookings', {});
 
   const rows = TRIP_DATA.bookings.map(b => {
-    const status = saved[b.p] || b.status;
+    const status = b.status === 'booked' ? 'booked' : (saved[b.p] || b.status);
     return `<tr>
       <td style="font-weight:700;color:var(--gold);font-size:.85rem;white-space:nowrap">#${b.p}</td>
       <td class="booking-what">
