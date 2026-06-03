@@ -127,9 +127,9 @@ const TRIP_DATA = {
       id: 6, label: "Day 6", date: "Wed, Jun 24",
       from: "Van Damme SP / Mendocino, CA", to: "Humboldt Redwoods, CA",
       driveTime: "3.5-4h", miles: "~155 mi", zone: "forest",
-      lodgingType: "camp", lodgingName: "Burlington Campground, Humboldt Redwoods SP",
-      lodgingCost: "~$35", lodgingNotes: "Right on Avenue of the Giants by the visitor center. 57 sites, dog-friendly on 6 ft leash, coin showers, flush toilets, bear boxes. Reserve via ReserveCalifornia.",
-      lodgingBackup: "Hidden Springs Campground in the same park, seasonal and reservable.",
+      lodgingType: "camp", lodgingName: "Humboldt Redwoods SP - Burlington Camp, Tent Site 004Bu",
+      lodgingCost: "$43.25 paid", lodgingNotes: "BOOKED. Stay Wed 06/24/2026 2:00 PM to Thu 06/25/2026 12:00 PM. Regular tent campsite 004Bu; confirmation #29559795, purchased 06/03/2026. $35 campsite + $8.25 reservation fee. Right on Avenue of the Giants by the visitor center; dog-friendly on 6 ft leash, coin showers, flush toilets, bear boxes.",
+      lodgingBackup: "No backup needed for Jun 24 unless the reservation changes.",
       route: "Hwy 1 south to US-101 north, then Avenue of the Giants",
       routeNotes: "From Van Damme, use the winding Mendocino-to-101 connector before heading north into the redwoods.",
       description: "This replaces the old 8-9 hour rush to Eugene. You get a real afternoon and evening in the redwoods.",
@@ -137,7 +137,7 @@ const TRIP_DATA = {
       activities: ["Drive slowly and pull over at every grove.", "Let Kye swim and fetch in the slow, shallow South Fork Eel River if conditions are safe.", "Evening grove pullouts for redwood light."],
       food: [{ name: "Eel River Brewing", note: "Fortuna; massive dog patio." }],
       dogNotes: ["Dog-friendly in campground and on roads, not dirt trails.", "Dog food goes in bear boxes."],
-      warnings: ["Cal Barrel Road is 1.5-2 hours north at Prairie Creek; save it for Day 7 morning."],
+      warnings: ["Reservation is active; bring confirmation #29559795.", "Cal Barrel Road is 1.5-2 hours north at Prairie Creek; save it for Day 7 morning."],
     },
     {
       id: 7, label: "Day 7", date: "Thu, Jun 25",
@@ -341,7 +341,7 @@ const TRIP_DATA = {
   budget: {
     categories: [
       { name: "Lodging", color: "#2a7ea8", items: [
-        { label: "11 camp nights (2 booked: Morro Bay $43.25, Van Damme $53.25)", amount: 394 },
+        { label: "11 camp nights (3 booked: Morro Bay $43.25, Van Damme $53.25, Burlington $43.25)", amount: 404 },
         { label: "Motels: Ventura, San Jose, Eugene", amount: 240 },
         { label: "Seattle Airbnb: 3 nights (avg ~$165)", amount: 495 },
       ]},
@@ -366,7 +366,7 @@ const TRIP_DATA = {
     { p: 1, what: "Morro Bay SP Upper Section, Site 123 (Jun 19)", how: "ReserveCalifornia / Web Bookings", urgency: "critical", notes: "BOOKED: confirmation #29558779, $43.25 paid", status: "booked" },
     { p: 2, what: "Van Damme SP Upper Loop, Site 033 (Jun 23)", how: "ReserveCalifornia / Web Bookings", urgency: "critical", notes: "BOOKED: confirmation #29557920, $53.25 paid", status: "booked" },
     { p: 3, what: "Nehalem Bay State Park (Jun 26)", how: "oregonstateparks.reserveamerica.com", urgency: "critical", notes: "Oregon coast summer demand", status: "pending" },
-    { p: 4, what: "Burlington CG, Humboldt Redwoods (Jun 24)", how: "ReserveCalifornia", urgency: "critical", notes: "Book now", status: "pending" },
+    { p: 4, what: "Humboldt Redwoods SP Burlington Camp Tent Site 004Bu (Jun 24)", how: "ReserveCalifornia / Web Bookings", urgency: "critical", notes: "BOOKED: confirmation #29559795, $43.25 paid", status: "booked" },
     { p: 5, what: "Convict Lake CG (Jul 4)", how: "recreation.gov", urgency: "critical", notes: "July 4 weekend", status: "pending" },
     { p: 6, what: "Hat Creek or Almanor North Campground (Jul 3)", how: "recreation.gov", urgency: "critical", notes: "Do not rely on FCFS Cave CG for July 4 weekend", status: "pending" },
     { p: 7, what: "Farewell Bend or Natural Bridge CG (Jul 2)", how: "recreation.gov / USFS", urgency: "very-high", notes: "Crater Lake area", status: "pending" },
@@ -420,7 +420,7 @@ const TRIP_DATA = {
   ],
 
   todos: [
-    { cat: "Book Now", items: ["BOOKED: Morro Bay SP Upper Section site 123 (Jun 19), confirmation #29558779", "BOOKED: Van Damme SP Upper Loop site 033 (Jun 23), confirmation #29557920", "Nehalem Bay SP (Jun 26) via oregonstateparks.reserveamerica.com", "Burlington CG, Humboldt Redwoods (Jun 24) via ReserveCalifornia", "Convict Lake CG (Jul 4) via recreation.gov", "Hat Creek or Almanor North CG (Jul 3) via recreation.gov, or private tent-friendly RV park backup", "Farewell Bend or Natural Bridge CG (Jul 2) via recreation.gov", "Tumalo State Park (Jul 1) via oregonstateparks.reserveamerica.com", "Seattle Airbnb: 3 nights Jun 27-29, Ballard, pet-friendly, fenced yard", "Call Laguna Seca (888-588-2267): Jun 20-21 tent site, dog policy, track events", "Motel 6 Ventura Beach (Jun 18)", "Motel 6 San Jose South (Jun 22)", "Motel 6 Eugene South (Jun 25)"] },
+    { cat: "Book Now", items: ["BOOKED: Morro Bay SP Upper Section site 123 (Jun 19), confirmation #29558779", "BOOKED: Van Damme SP Upper Loop site 033 (Jun 23), confirmation #29557920", "BOOKED: Humboldt Redwoods SP Burlington Camp tent site 004Bu (Jun 24), confirmation #29559795", "Nehalem Bay SP (Jun 26) via oregonstateparks.reserveamerica.com", "Convict Lake CG (Jul 4) via recreation.gov", "Hat Creek or Almanor North CG (Jul 3) via recreation.gov, or private tent-friendly RV park backup", "Farewell Bend or Natural Bridge CG (Jul 2) via recreation.gov", "Tumalo State Park (Jul 1) via oregonstateparks.reserveamerica.com", "Seattle Airbnb: 3 nights Jun 27-29, Ballard, pet-friendly, fenced yard", "Call Laguna Seca (888-588-2267): Jun 20-21 tent site, dog policy, track events", "Motel 6 Ventura Beach (Jun 18)", "Motel 6 San Jose South (Jun 22)", "Motel 6 Eugene South (Jun 25)"] },
     { cat: "Gear & Car", items: ["Oil change", "Tire check including spare", "AC and coolant systems topped off", "Buy baby oil, extra water jugs, power bank", "Bear canister check / confirm campground bear lockers"] },
     { cat: "Dog Prep", items: ["Fresh flea/tick preventative dose this week", "Bootie training at home (let Kye do the moonwalk)", "Confirm vaccination records are current"] },
   ],
