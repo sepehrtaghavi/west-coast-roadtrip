@@ -25,7 +25,7 @@ const TRIP_DATA = {
     { icon: "🔥", title: "Wildfire Checks", sev: "high", desc: "Use Watch Duty every morning for real-time wildfire tracking and route decisions." },
     { icon: "💧", title: "Remote Water", sev: "medium", desc: "Carry 3 extra gallons of water in the trunk. Shasta, Lassen, and Highway 395 stretches are remote." },
     { icon: "🛣", title: "Big Sur Hwy 1", sev: "high", desc: "Hwy 1 reopened in Jan 2026 but remains slide-prone. Check Caltrans QuickMap the morning of the drive. Backup is US-101 via Paso Robles and Salinas." },
-    { icon: "🏕", title: "Camping Availability", sev: "high", desc: "Summer California redwood, Oregon, and Washington camps sell out months ahead. Reserve the proposed Jun 25-27 camps immediately and keep private-campground backups." },
+    { icon: "🏕", title: "Camping Availability", sev: "high", desc: "Humbug Mountain on Jun 25 is booked. Reserve the proposed Barview Jetty and Millersylvania camps for Jun 26-27 immediately and keep private-campground backups." },
     { icon: "🎆", title: "July 3-4", sev: "high", desc: "No low-demand FCFS Sierra camping on July 4 weekend. Book reservable sites now and download iOverlander and Campendium for dispersed backups." },
     { icon: "⛺", title: "Tent Fatigue", sev: "medium", desc: "Days 5-9 are five consecutive setup and breakdown nights: Van Damme, Burlington, Humbug Mountain, Barview Jetty, and Millersylvania. Keep these camp setups ruthlessly simple." },
     { icon: "🐕", title: "Oregon Coast Dog Rules", sev: "high", desc: "Voice-control off-leash access is common on wet packed sand where posted rules allow, but dogs are strictly banned from dry sand behind yellow Snowy Plover nesting signs from Mar 15-Sep 15." },
@@ -147,9 +147,9 @@ const TRIP_DATA = {
       id: 7, label: "Day 7", date: "Thu, Jun 25",
       from: "Burlington Camp, Humboldt Redwoods", to: "Humbug Mountain State Park, OR",
       driveTime: "3.5-4h", miles: "~185 mi", zone: "coastal",
-      lodgingType: "camp", lodgingName: "Humbug Mountain State Park",
-      lodgingCost: "Book now", lodgingNotes: "PROPOSED, NOT YET BOOKED. Tucked in a lush valley east of Hwy 101, which blocks coastal wind but gets shady and damp early. Showers, flush toilets, and beach access via a 0.5-mile walk under the highway. Book via oregonstateparks.reserveamerica.com.",
-      lodgingBackup: "Another reservable Southern Oregon Coast campground if Humbug fills.",
+      lodgingType: "camp", lodgingName: "Humbug Mountain State Park - Tent Site 54",
+      lodgingCost: "$50.00 paid", lodgingNotes: "BOOKED. Stay Thu 06/25/2026 4:00 PM to Fri 06/26/2026 1:00 PM. Tent site 54, loop 28-95. Reservation #2-38213261, ordered Thu 06/04/2026 at 10:35 AM PDT. Confirmed overnight tent-site reservation for 2 occupants and 1 vehicle. $40 camping fee + $10 reservation fee = $50 paid; balance $0. Tucked in a lush valley east of Hwy 101 with showers, flush toilets, and beach access via a 0.5-mile walk under the highway.",
+      lodgingBackup: "No backup needed for Jun 25 unless the reservation changes.",
       route: "US-101 N through Prairie Creek and Crescent City → Southern Oregon Coast",
       routeNotes: "Cross from the California Redwoods into the rugged Southern Oregon Coast.",
       description: "Redwood-road detours in the morning, then staggering Southern Oregon cliff views before a protected coastal camp.",
@@ -157,7 +157,7 @@ const TRIP_DATA = {
       activities: ["Walk the 0.5-mile beach-access route from camp if timing and conditions are comfortable."],
       food: [],
       dogNotes: ["Keep Kye leashed on redwood road shoulders and in the campground.", "Obey all posted Oregon Coast beach restrictions."],
-      warnings: ["Book Humbug Mountain immediately via oregonstateparks.reserveamerica.com.", "The camp gets shady and damp early."],
+      warnings: ["Reservation is confirmed; bring reservation #2-38213261.", "The camp gets shady and damp early."],
     },
     {
       id: 8, label: "Day 8", date: "Fri, Jun 26",
@@ -345,7 +345,7 @@ const TRIP_DATA = {
   budget: {
     categories: [
       { name: "Lodging", color: "#2a7ea8", items: [
-        { label: "12 camp nights (3 booked total $139.75)", amount: 455 },
+        { label: "12 camp nights (4 booked total $189.75)", amount: 455 },
         { label: "Motels: Ventura and San Jose", amount: 170 },
         { label: "Airbnb: 2 Seattle + 1 Portland", amount: 540 },
       ]},
@@ -369,7 +369,7 @@ const TRIP_DATA = {
     { p: 1, what: "Morro Bay SP Upper Section, Site 123 (Jun 19)", how: "ReserveCalifornia / Web Bookings", urgency: "critical", notes: "BOOKED: confirmation #29558779, $43.25 paid", status: "booked" },
     { p: 2, what: "Van Damme SP Upper Loop, Site 033 (Jun 23)", how: "ReserveCalifornia / Web Bookings", urgency: "critical", notes: "BOOKED: confirmation #29557920, $53.25 paid", status: "booked" },
     { p: 3, what: "Humboldt Redwoods SP Burlington Camp Tent Site 004Bu (Jun 24)", how: "ReserveCalifornia / Web Bookings", urgency: "critical", notes: "BOOKED: confirmation #29559795, $43.25 paid", status: "booked" },
-    { p: 4, what: "Humbug Mountain State Park (Jun 25)", how: "oregonstateparks.reserveamerica.com", urgency: "critical", notes: "Book immediately", status: "pending" },
+    { p: 4, what: "Humbug Mountain State Park Tent Site 54 (Jun 25)", how: "Oregon State Parks / ReserveAmerica", urgency: "critical", notes: "BOOKED: reservation #2-38213261, $50.00 paid", status: "booked" },
     { p: 5, what: "Barview Jetty County Campground (Jun 26)", how: "reservations.co.tillamook.or.us", urgency: "critical", notes: "Tillamook County campground, not a state park", status: "pending" },
     { p: 6, what: "Millersylvania State Park (Jun 27)", how: "washington.goingtocamp.com", urgency: "critical", notes: "Book immediately", status: "pending" },
     { p: 7, what: "Convict Lake CG (Jul 4)", how: "recreation.gov", urgency: "critical", notes: "July 4 weekend", status: "pending" },
@@ -393,7 +393,7 @@ const TRIP_DATA = {
     { location: "Humboldt Redwoods", allowed: ["Campgrounds", "Paved/developed areas", "Avenue of the Giants pullouts", "Mattole Road shoulder"], notAllowed: ["All dirt trails"], notes: "Cal Barrel Road and Howland Hill Road are farther north on Day 7, not Humboldt Redwoods." },
     { location: "Redwood road detours", allowed: ["Cal Barrel Road and Howland Hill Road shoulders on leash"], notAllowed: ["Most park trails"], notes: "Use legal road walks while passing through on Day 7." },
     { location: "Oregon Coast Beaches", allowed: ["Voice-control off-leash access on wet packed sand where posted rules allow"], notAllowed: ["Dry sand behind yellow Snowy Plover nesting signs from Mar 15-Sep 15"], notes: "Obey every posted nesting restriction." },
-    { location: "Humbug Mountain / Barview Jetty", allowed: ["Campgrounds on leash", "Beach access where posted rules allow"], notAllowed: ["Snowy Plover restricted dry-sand areas"], notes: "Barview can be very windy; secure the tent heavily." },
+    { location: "Humbug Mountain / Barview Jetty", allowed: ["Campgrounds on leash", "Beach access where posted rules allow"], notAllowed: ["Snowy Plover restricted dry-sand areas"], notes: "Humbug Mountain tent site 54 is booked. Barview can be very windy; secure the tent heavily." },
     { location: "Millersylvania State Park", allowed: ["Campground and trails on leash no longer than 8 ft", "Quiet shoreline water access on leash"], notAllowed: ["Two designated human swimming beaches"], notes: "Kye must remain leashed even in the water." },
     { location: "Crater Lake NP", allowed: ["Rim Village promenade", "Lady of the Woods", "Godfrey Glen", "PCT section", "Pinnacles", "Annie Springs Spur", "Grayback Rd"], notAllowed: ["Cleetwood Cove", "The lake", "Most trails"], notes: "Use only the specific dog-OK areas." },
     { location: "Smith Rock, OR", allowed: ["All trails on leash"], notAllowed: ["Off-leash hiking"], notes: "Rattlesnake alert: stay on trail." },
@@ -429,7 +429,7 @@ const TRIP_DATA = {
   ],
 
   todos: [
-    { cat: "Book Now", items: ["BOOKED: Morro Bay SP Upper Section site 123 (Jun 19), confirmation #29558779", "BOOKED: Van Damme SP Upper Loop site 033 (Jun 23), confirmation #29557920", "BOOKED: Humboldt Redwoods SP Burlington Camp tent site 004Bu (Jun 24), confirmation #29559795", "Humbug Mountain State Park (Jun 25) via oregonstateparks.reserveamerica.com", "Barview Jetty County Campground (Jun 26) via reservations.co.tillamook.or.us", "Millersylvania State Park (Jun 27) via washington.goingtocamp.com", "Convict Lake CG (Jul 4) via recreation.gov", "Almanor South CG, Lake Almanor (Jul 3) via recreation.gov", "Farewell Bend or Natural Bridge CG (Jul 2) via recreation.gov", "Tumalo State Park (Jul 1) via oregonstateparks.reserveamerica.com", "Seattle Airbnb: 2 nights Jun 28-29, Ballard, pet-friendly, fenced yard", "Portland Airbnb: 1 night Jun 30, pet-friendly SE Portland/Hawthorne or N/Mississippi", "Call Laguna Seca (888-588-2267): Jun 20-21 tent site, dog policy, track events", "Motel 6 Ventura Beach (Jun 18)", "Motel 6 San Jose South (Jun 22)"] },
+    { cat: "Book Now", items: ["BOOKED: Morro Bay SP Upper Section site 123 (Jun 19), confirmation #29558779", "BOOKED: Van Damme SP Upper Loop site 033 (Jun 23), confirmation #29557920", "BOOKED: Humboldt Redwoods SP Burlington Camp tent site 004Bu (Jun 24), confirmation #29559795", "BOOKED: Humbug Mountain State Park tent site 54 (Jun 25), reservation #2-38213261", "Barview Jetty County Campground (Jun 26) via reservations.co.tillamook.or.us", "Millersylvania State Park (Jun 27) via washington.goingtocamp.com", "Convict Lake CG (Jul 4) via recreation.gov", "Almanor South CG, Lake Almanor (Jul 3) via recreation.gov", "Farewell Bend or Natural Bridge CG (Jul 2) via recreation.gov", "Tumalo State Park (Jul 1) via oregonstateparks.reserveamerica.com", "Seattle Airbnb: 2 nights Jun 28-29, Ballard, pet-friendly, fenced yard", "Portland Airbnb: 1 night Jun 30, pet-friendly SE Portland/Hawthorne or N/Mississippi", "Call Laguna Seca (888-588-2267): Jun 20-21 tent site, dog policy, track events", "Motel 6 Ventura Beach (Jun 18)", "Motel 6 San Jose South (Jun 22)"] },
     { cat: "Gear & Car", items: ["Oil change", "Tire check including spare", "AC and coolant systems topped off", "Buy baby oil, extra water jugs, power bank", "Bear canister check / confirm campground bear lockers"] },
     { cat: "Dog Prep", items: ["Fresh flea/tick preventative dose this week", "Bootie training at home (let Kye do the moonwalk)", "Confirm vaccination records are current"] },
   ],
