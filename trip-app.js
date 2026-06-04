@@ -386,15 +386,11 @@ function renderDriving() {
   if (summaryEl) {
     const drivingDays = TRIP_DATA.driving.filter(d => !['Rest', 'Walk/Uber', 'Minimal'].includes(d.time));
     const longDays = TRIP_DATA.driving.filter(d => d.long).length;
-    const miles = TRIP_DATA.driving.reduce((sum, d) => {
-      const n = parseInt((d.miles || '').replace(/[^0-9]/g, ''));
-      return sum + (isNaN(n) ? 0 : n);
-    }, 0);
     summaryEl.innerHTML = [
-      { v: `~${miles.toLocaleString()}`, l: 'total miles' },
+      { v: TRIP_DATA.meta.totalMiles || '—', l: 'total miles' },
       { v: drivingDays.length, l: 'driving days' },
       { v: longDays, l: 'long days (4h+)' },
-      { v: '~53–60h', l: 'est. drive time' },
+      { v: TRIP_DATA.meta.estimatedDriveTime || '—', l: 'est. drive time' },
     ].map(s => `<div class="drive-stat"><span class="drive-stat-value">${s.v}</span><span class="drive-stat-label">${s.l}</span></div>`).join('');
   }
 
