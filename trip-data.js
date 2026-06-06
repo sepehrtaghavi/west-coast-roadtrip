@@ -243,9 +243,9 @@ const TRIP_DATA = {
       id: 13, label: "Day 13", date: "Wed, Jul 1",
       from: "Portland, OR", to: "Bend Area, OR",
       driveTime: "3-3.5h direct; 4.5-5.5h with stops", miles: "~160 mi", zone: "forest",
-      lodgingType: "camp", lodgingName: "Tumalo State Park",
-      lodgingCost: "~$30-34", lodgingNotes: "About 5 minutes from Bend. Dog-friendly with showers. Oregon nonresident pricing. Book in advance via oregonstateparks.reserveamerica.com.",
-      lodgingBackup: "Nearby Bend/Tumalo campground or motel if Tumalo is full.",
+      lodgingType: "camp", lodgingName: "Tumalo State Park - Tent Site 057, Loop C",
+      lodgingCost: "$50.00 paid", lodgingNotes: "BOOKED. Stay Wed 07/01/2026 4:00 PM to Thu 07/02/2026 1:00 PM. Tent site 057, loop C. Reservation #2-38214127. Confirmed Oregon State Parks tent-site reservation; primary Sarah Keller. $40 camping fee + $10 reservation fee = $50 paid; balance $0. About 5 minutes from Bend, dog-friendly with showers and easy Deschutes River access.",
+      lodgingBackup: "No backup needed for Jul 1 unless the reservation changes.",
       route: "US-26 E over Mt. Hood → Warm Springs → Madras → US-97 S",
       routeNotes: "The Mt. Hood route is more direct and scenic than the Gorge. Do not stop at Smith Rock today; it is moved to dawn on Day 14.",
       description: "Mt. Hood, Trillium Lake, and a comfortable Bend arrival without exposing Kye to afternoon Smith Rock heat.",
@@ -253,7 +253,7 @@ const TRIP_DATA = {
       activities: ["Walk the Deschutes River Trail: paved, flat, gorgeous.", "Crux Fermentation Project for grassy lawn, Cascade views, dogs, beer, and sunset.", "Low-stress alternative: The Bite in Tumalo, 4 minutes from camp, food-truck pod, taphouse, lawn, fire pits, string lights, aggressively dog-friendly."],
       food: [{ name: "Mt. Hood Brewing", note: "Government Camp patio lunch with mountain views." }, { name: "Crux Fermentation Project / The Bite", note: "Dog-friendly Bend and Tumalo evening options." }],
       dogNotes: ["Trillium Lake is a top leashed swim stop.", "Deschutes River Trail is an easy evening Kye walk."],
-      warnings: ["Skip Smith Rock this afternoon; heat, paw-pad risk, and rattlesnakes make dawn safer."],
+      warnings: ["Skip Smith Rock this afternoon; heat, paw-pad risk, and rattlesnakes make dawn safer.", "Reservation is confirmed; bring reservation #2-38214127."],
     },
     {
       id: 14, label: "Day 14", date: "Thu, Jul 2",
@@ -345,7 +345,7 @@ const TRIP_DATA = {
   budget: {
     categories: [
       { name: "Lodging", color: "#2a7ea8", items: [
-        { label: "12 camp nights (5 booked total $235.75)", amount: 455 },
+        { label: "12 camp nights (6 booked total $285.75)", amount: 455 },
         { label: "Motels: Ventura and San Jose", amount: 170 },
         { label: "Airbnb: 2 Seattle + 1 Portland", amount: 540 },
       ]},
@@ -375,7 +375,7 @@ const TRIP_DATA = {
     { p: 7, what: "Convict Lake CG (Jul 4)", how: "recreation.gov", urgency: "critical", notes: "July 4 weekend", status: "pending" },
     { p: 8, what: "Almanor South CG, Lake Almanor (Jul 3)", how: "recreation.gov", urgency: "critical", notes: "Confirmed reservable; do not rely on FCFS", status: "pending" },
     { p: 9, what: "Farewell Bend or Natural Bridge CG (Jul 2)", how: "recreation.gov / USFS", urgency: "very-high", notes: "Crater Lake area", status: "pending" },
-    { p: 10, what: "Tumalo State Park (Jul 1)", how: "oregonstateparks.reserveamerica.com", urgency: "very-high", notes: "Bend area", status: "pending" },
+    { p: 10, what: "Tumalo State Park Tent Site 057, Loop C (Jul 1)", how: "Oregon State Parks / ReserveAmerica", urgency: "very-high", notes: "BOOKED: reservation #2-38214127, $50.00 paid", status: "booked" },
     { p: 11, what: "Seattle Airbnb (Jun 28-29, 2 nights)", how: "Airbnb", urgency: "high", notes: "Ballard, pet-friendly, fenced yard", status: "pending" },
     { p: "11b", what: "Portland Airbnb (Jun 30, 1 night)", how: "Airbnb", urgency: "high", notes: "Pet-friendly SE Portland/Hawthorne or N/Mississippi", status: "pending" },
     { p: 12, what: "Laguna Seca backup (Jun 20-21)", how: "Call 888-588-2267", urgency: "high", notes: "Ask about track events for full weekend", status: "pending" },
@@ -429,7 +429,7 @@ const TRIP_DATA = {
   ],
 
   todos: [
-    { cat: "Book Now", items: ["BOOKED: Morro Bay SP Upper Section site 123 (Jun 19), confirmation #29558779", "BOOKED: Van Damme SP Upper Loop site 033 (Jun 23), confirmation #29557920", "BOOKED: Humboldt Redwoods SP Burlington Camp tent site 004Bu (Jun 24), confirmation #29559795", "BOOKED: Humbug Mountain State Park tent site 54 (Jun 25), reservation #2-38213261", "BOOKED: Barview Jetty County Campground Blue Tent Site C2 (Jun 26), confirmation #R00000007782", "Millersylvania State Park (Jun 27) via washington.goingtocamp.com", "Convict Lake CG (Jul 4) via recreation.gov", "Almanor South CG, Lake Almanor (Jul 3) via recreation.gov", "Farewell Bend or Natural Bridge CG (Jul 2) via recreation.gov", "Tumalo State Park (Jul 1) via oregonstateparks.reserveamerica.com", "Seattle Airbnb: 2 nights Jun 28-29, Ballard, pet-friendly, fenced yard", "Portland Airbnb: 1 night Jun 30, pet-friendly SE Portland/Hawthorne or N/Mississippi", "Call Laguna Seca (888-588-2267): Jun 20-21 tent site, dog policy, track events", "Motel 6 Ventura Beach (Jun 18)", "Motel 6 San Jose South (Jun 22)"] },
+    { cat: "Book Now", items: ["BOOKED: Morro Bay SP Upper Section site 123 (Jun 19), confirmation #29558779", "BOOKED: Van Damme SP Upper Loop site 033 (Jun 23), confirmation #29557920", "BOOKED: Humboldt Redwoods SP Burlington Camp tent site 004Bu (Jun 24), confirmation #29559795", "BOOKED: Humbug Mountain State Park tent site 54 (Jun 25), reservation #2-38213261", "BOOKED: Barview Jetty County Campground Blue Tent Site C2 (Jun 26), confirmation #R00000007782", "BOOKED: Tumalo State Park tent site 057, loop C (Jul 1), reservation #2-38214127", "Millersylvania State Park (Jun 27) via washington.goingtocamp.com", "Convict Lake CG (Jul 4) via recreation.gov", "Almanor South CG, Lake Almanor (Jul 3) via recreation.gov", "Farewell Bend or Natural Bridge CG (Jul 2) via recreation.gov", "Seattle Airbnb: 2 nights Jun 28-29, Ballard, pet-friendly, fenced yard", "Portland Airbnb: 1 night Jun 30, pet-friendly SE Portland/Hawthorne or N/Mississippi", "Call Laguna Seca (888-588-2267): Jun 20-21 tent site, dog policy, track events", "Motel 6 Ventura Beach (Jun 18)", "Motel 6 San Jose South (Jun 22)"] },
     { cat: "Gear & Car", items: ["Oil change", "Tire check including spare", "AC and coolant systems topped off", "Buy baby oil, extra water jugs, power bank", "Bear canister check / confirm campground bear lockers"] },
     { cat: "Dog Prep", items: ["Fresh flea/tick preventative dose this week", "Bootie training at home (let Kye do the moonwalk)", "Confirm vaccination records are current"] },
   ],
